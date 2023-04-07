@@ -25,7 +25,9 @@ export const fetchUpdate = async(url, x)=>{
 export  const fetchRead = async(url, mdata)=>{
     try{
     const response = await axios.get(url, mdata)
-    const {respond1} = await response.data
+   
+    const respond1 = await response.data
+    // console.log(respond1)
     return respond1
   }
   catch (error) {

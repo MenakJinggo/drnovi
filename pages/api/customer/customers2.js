@@ -1,6 +1,4 @@
 
-import {getSession} from "next-auth/react"
-const ObjectId = require('mongodb').ObjectId;
 import {Types} from "mongoose"
 import Customers from '../../../lib/Customers'
 import db from '../../../lib/db';
@@ -51,7 +49,8 @@ await db.connect()
 
 
 const postHandler = async (req, res) => {
-const  {rm, nama, namakk, alamat, rt, rw} = req.body
+
+
   await db.connect()
 
   const newProduct = new Customers({
@@ -64,7 +63,7 @@ const  {rm, nama, namakk, alamat, rt, rw} = req.body
     rw:req.body.rw
   });
   const product = await newProduct.save();
-  console.log(product)
+
   const newUser1 = JSON.stringify(product)
  
 

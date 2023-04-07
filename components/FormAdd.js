@@ -6,15 +6,21 @@ import { useRouter } from 'next/router';
 import SearchInput from "./SearchInput";
 
 function FormAdd() {
-  const [dataM, setDataM] = useState({_id:"", rm:"", nama:"",namakk:"", alamat:"",rt:"",rw:""})
+ 
 
-  const { showForm, users, setUsers, showSearchOK, showAddForm, setShowAddForm, setShowSpinner} = useContext(Store);
+  const { showForm, lastRM, users, setUsers, dataM, setDataM, showSearchOK, showAddForm, setShowAddForm, setShowSpinner} = useContext(Store);
   const router = useRouter()
+
+
+
 
   const saveForm = async(e)=>{
     e.preventDefault()
     const data2 = await fetchAdd("/api/customer/customers2", dataM)
+    
     console.log(data2.data.newUser)
+    // console.log(data2.data)
+
     setShowSpinner(false)
          
       
@@ -24,7 +30,6 @@ function FormAdd() {
     setUsers([...users, myDataq])
     alert(data2.data.message)
 
-    alert(data2?.data.message)
     setShowAddForm(!showAddForm)
   }
 
@@ -37,7 +42,12 @@ function FormAdd() {
         e.preventDefault()
         setShowAddForm(false)
       }   
-         
+  
+  useEffect(()=>{
+    setDataM({...dataM, rm:lastRM})
+  },[]) 
+  
+  console.log(lastRM)
   return (
     <div className='w-full '>
         <div className='flex items-center justify-center'>

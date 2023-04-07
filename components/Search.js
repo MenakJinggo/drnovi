@@ -14,7 +14,7 @@ const axios = require('axios').default;
 function Search() {
 
     const [newStatus, setStatus] = useState(false)
-    const { addUsers,setShowSpinner,setShowSearchOK, showSearchOK} = useContext(Store);
+    const {users, addUsers,setShowSpinner,setShowSearchOK, showSearchOK} = useContext(Store);
     const [showSearch, setShowSearch, ] = useState(true)
     
 
@@ -43,7 +43,7 @@ function Search() {
         e.preventDefault()
          setShowSpinner(true)
         const response = await fetchRead("/api/customer/customers2", { params: {...dataM} })
-         console.log("****",response)
+         console.log("****",response.respond1)
          setShowSpinner(false)
          setShowSearch(true)
          setShowSearchOK(false)
@@ -55,16 +55,17 @@ function Search() {
         }
      
         
-        addUsers(response)
+        addUsers(response.respond1)
         return response
     
      }
 
       const getAlamat =(y)=>{
         setDataM({...dataM, alamat: y})
-        console.log(y)
+       
       }
      
+      
     return (
 
         <div className='flex flex-col justify-center items-start w-full relative'>

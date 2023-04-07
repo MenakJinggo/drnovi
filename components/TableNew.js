@@ -19,6 +19,7 @@ function TableNew() {
   
 const router = useRouter()
 
+
 const closeButton = (e)=>{
     e.preventDefault()
     setAdminId(null)
@@ -109,7 +110,7 @@ const saveData=async (e)=>{
                     <p className= 'hidden md:grid col-span-1 bg-green-600 h-8 p-2'>RW</p>
                     <p className= 'hidden md:grid col-span-2 bg-green-600 h-8 p-2'>ACTIONS</p>
         </div>
-    { users&&users.map((customer, index )=> (
+    { users&&users?.map((customer, index )=> (
         <div className=""> 
      {adminId != customer._id?(
         <div className="bg-gray-100 h-72 md:h-8 text-sm sm:text-md grid grid-cols-12 gap-y-6 gap-x-2 place-content-center my-2 mx-4 text-gray-900 px-2 rounded overflow-hidden shadow-lg" key={customer._id}>
