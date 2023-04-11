@@ -44,7 +44,7 @@ function Headers({myPath}) {
                       w-full cursor-pointer object-fit-content rounded-full"
                     />
                       <h1 className="flex items-center justify-center font-bold  text-gray-900 cursor-pointer">
-                        Puskesmas Lasem
+                        Dr Novi
                       </h1>
                   </div>
                 </div>

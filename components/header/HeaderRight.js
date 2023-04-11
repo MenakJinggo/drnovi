@@ -39,14 +39,14 @@ function HeaderRight() {
           <p >Add RM</p>
           < DataSaverOnIcon />
         </div>
-        <div 
+        {/* <div 
           onClick={()=>router.push("/admin")} 
           className="flex  items-center space-x-4 cursor-pointer ">
           <p className='inline-flex'> Admin </p>
         </div>
         <div onClick={signOut} >
             <LogoutIcon className="cursor-pointer" />
-        </div>    
+        </div>     */}
     </div>
   );
 }

@@ -43,11 +43,11 @@ function FormAdd() {
         setShowAddForm(false)
       }   
   
-  useEffect(()=>{
-    setDataM({...dataM, rm:lastRM})
-  },[]) 
+  // useEffect(()=>{
+  //   setDataM({...dataM, rm:lastRM})
+  // },[]) 
   
-  console.log(lastRM)
+  // console.log(lastRM)
   return (
     <div className='w-full '>
         <div className='flex items-center justify-center'>
