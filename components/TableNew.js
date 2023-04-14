@@ -81,7 +81,9 @@ const saveData=async (e)=>{
 
  const deleteData = async (e, customersId) => {
     e.preventDefault()
+    alert("Yakin Hapus")
     setShowSpinner(true)
+
     const response = await fetchDelete(`/api/customer3/${customersId}`) 
     alert(response.data.message)
     setShowSpinner(false)
@@ -111,12 +113,14 @@ const saveData=async (e)=>{
                     <p className= 'hidden md:grid col-span-2 bg-green-600 h-8 p-2'>ACTIONS</p>
         </div>
     { users&&users?.map((customer, index )=> (
-        <div className=""> 
-     {adminId != customer._id?(
-        <div className="bg-gray-100 h-72 md:h-8 text-sm sm:text-md grid grid-cols-12 gap-y-6 gap-x-2 place-content-center my-2 mx-4 text-gray-900 px-2 rounded overflow-hidden shadow-lg" key={customer._id}>
+        <div className=" sm:inline-flex w-full"> 
 
-        <div className='grid col-span-12'> 
-            <div className='grid grid-cols-12 gap-2'>                   
+
+     {adminId != customer._id?(
+        <div className=" bg-gray-100 h-72 md:h-8 text-sm sm:text-md grid grid-cols-12 gap-y-6 gap-x-2 place-content-center my-2 mx-4 text-gray-900 px-2 rounded overflow-hidden shadow-lg w-full" key={customer._id}>
+
+        <div className='grid col-span-12 w-full '> 
+            <div className='grid grid-cols-12 gap-2  w-full'>                   
                 <p className="hidden md:grid col-span-2 rounded p-1 bg-transparent">{customer.rm}</p>
                 <p className="hidden md:grid col-span-2 rounded p-1 bg-transparent">{customer.nama}</p>
                 <p className="hidden md:grid col-span-2 rounded p-1 bg-transparent">{customer.namakk}</p>
@@ -126,15 +130,13 @@ const saveData=async (e)=>{
 
                 <p className="hidden md:grid col-span-2  rounded p-1 bg-transparent">
                     <div className='flex justify-around items-center'>
-                          <div onClick={(e)=>deleteData(e, customer._id)} className=' text-green cursor-pointer w-5 h-5 rounded-full bg-transparent flex items-center justify-center'><CloseIcon /></div>
+                        <div onClick={(e)=>deleteData(e, customer._id)} className=' text-green cursor-pointer w-5 h-5 rounded-full bg-transparent flex items-center justify-center'><CloseIcon /></div>
                         <div  onClick={(e)=>editData(e, customer)} className=' cursor-pointer w-5 h-5 rounded-full bg-transparent flex items-center justify-center'><BorderColorIcon /></div>
                         <div  onClick={(e)=>detailData(e, customer)} className=' cursor-pointer w-5 h-5 rounded-full bg-transparent flex items-center justify-center'><DataSaverOnIcon/></div>
-                    
                     </div>
                 </p>    
 
-        <div className='col-span-12 md:hidden  bg-white rounded-lg border border-gray-200 shadow-md p-2 dark:bg-gray-800 dark:border-gray-70 '>
-            
+        <div className='col-span-12 md:hidden  bg-white rounded-lg border  shadow-md p-2 '>
             <p className="grid col-span-12 h-7 text-justify">
                 <div className='grid grid-cols-12 gap-2'>
                     <div className="grid col-span-4 " >RM</div>
@@ -189,26 +191,27 @@ const saveData=async (e)=>{
         <div className="h-72 md:h-8 text-sm sm:text-md grid grid-cols-12 gap-y-6 gap-x-2 place-content-center my-2 h-10 mx-4 text-gray-900 px-2"
         key={customer._id}>
 
-            <div className="hidden md:grid col-span-12 bg-white rounded-lg border border-gray-200 shadow-md p-2 dark:bg-gray-800 dark:border-gray-70">
+            <div className="hidden md:grid col-span-12 bg-white rounded-lg border  shadow-md p-2 ">
+
             <div className='grid grid-cols-12 gap-2'>
-                    <input className="hidden md:grid col-span-2 border-2 border-gray-900 rounded p-1 bg-transparent"
+                    <input className="hidden md:grid col-span-2 border-2  rounded p-1 bg-transparent"
                         type="text"
                         placeholder='RM'
                         onChange={(e)=>setAmdinEdit({...adminEdit, rm:e.target.value})}
                         value = {adminEdit.rm} 
                         />
-                    <input className="hidden md:grid col-span-2 border-2 border-gray-900 rounded p-1 bg-transparent"
+                    <input className="hidden md:grid col-span-2 border-2  rounded p-1 bg-transparent"
                         type="text"
                         placeholder='Nama'
                         onChange={(e)=>setAmdinEdit({...adminEdit, nama:e.target.value})}
                         value = {adminEdit.nama}
                         />
-                    <input className="hidden md:grid col-span-2 border-2 border-gray-900 rounded p-1 bg-transparent"
+                    <input className="hidden md:grid col-span-2 border-2  rounded p-1 bg-transparent"
                         placeholder='Nama KK'
                         type="text"
                         onChange={(e)=>setAmdinEdit({...adminEdit, namakk:e.target.value})}
                         value = {adminEdit.namakk}/>
-                    <div className="hidden md:grid col-span-2 border-2 border-gray-900 rounded p-1 bg-transparent relative">
+                    <div className="hidden md:grid col-span-2  rounded p-1 bg-transparent relative">
                         <div  className="absolute top-0 left-0 z-20">
                             <SearchInput 
                             getAlamat={getAlamat}
@@ -216,11 +219,11 @@ const saveData=async (e)=>{
                         </div>
                     </div>
                         
-                    <input className="hidden md:grid col-span-1 border-2 border-gray-900 rounded p-1 bg-transparent" 
+                    <input className="hidden md:grid col-span-1 border-2  rounded p-1 bg-transparent" 
                         type="text"
                         onChange={(e)=>setAmdinEdit({...adminEdit, rt:e.target.value})}
                         value = {adminEdit.rt} /> 
-                    <input className="hidden md:grid col-span-1 border-2 border-gray-900 rounded p-1 bg-transparent"
+                    <input className="hidden md:grid col-span-1 border-2  rounded p-1 bg-transparent"
                         type="text"
                         onChange={(e)=>setAmdinEdit({...adminEdit, rw:e.target.value})}
                         value = {adminEdit.rw} />
@@ -236,41 +239,43 @@ const saveData=async (e)=>{
            </div> 
         </div>          
     </div>    
-            <div className='grid col-span-12 md:hidden  bg-white rounded-lg border border-gray-200 shadow-md p-2 dark:bg-gray-800 dark:border-gray-70'> 
+            <div className='grid col-span-12 md:hidden  rounded-lg border border-gray-100 shadow-md p-2'> 
                 <div className='grid grid-cols-12 gap-2'>
-                    <input className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded"
+                    <input className="bg-gray-50 border-50 grid col-span-12 h-7 text-justify rounded px-2 "
                         type="text"
                         placeholder='RM'
                         onChange={(e)=>setAmdinEdit({...adminEdit, rm:e.target.value})}
                         value = {adminEdit.rm} 
                         />
-                    <input className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded" 
+                    <input className="bg-gray-50 border-50 grid col-span-12 h-7 text-justify rounded px-2" 
                         type="text"
                         placeholder='Nama'
                         onChange={(e)=>setAmdinEdit({...adminEdit, nama:e.target.value})}
                         value = {adminEdit.nama}
                         />
-                    <input className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded"
+                    <input className="bg-gray-50 border-50 grid col-span-12 h-7 text-justify rounded px-2"
                         placeholder='Nama KK'
                         type="text"
                         onChange={(e)=>setAmdinEdit({...adminEdit, namakk:e.target.value})}
                         value = {adminEdit.namakk}/>
-                    <div  className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded relative">
+                  
+                        
+                    <input className="bg-gray-50 border-50 grid col-span-12 h-7 text-justify rounded px-2" 
+                        type="text"
+                        onChange={(e)=>setAmdinEdit({...adminEdit, rt:e.target.value})}
+                        value = {adminEdit.rt} /> 
+                    <input className="bg-gray-50 border-50 grid col-span-12 h-7 text-justify rounded px-2" 
+                        type="text"
+                        onChange={(e)=>setAmdinEdit({...adminEdit, rw:e.target.value})}
+                        value = {adminEdit.rw} />
+
+                    <div  className="border-50 grid col-span-12 h-7 text-justify rounded relative">
                         <div  className="absolute top-0 left-0 z-20">
                             <SearchInput 
                             getAlamat={getAlamat}
                             alamatQ = {adminEdit.alamat}/>
                         </div>
-                    </div>
-                        
-                    <input className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded" 
-                        type="text"
-                        onChange={(e)=>setAmdinEdit({...adminEdit, rt:e.target.value})}
-                        value = {adminEdit.rt} /> 
-                    <input className="border-2 border-gray-400 grid col-span-12 h-7 text-justify rounded" 
-                        type="text"
-                        onChange={(e)=>setAmdinEdit({...adminEdit, rw:e.target.value})}
-                        value = {adminEdit.rw} />
+                    </div>    
                 </div>
             </div>
             <div className='grid md:hidden col-span-12 p-2'>
@@ -287,7 +292,12 @@ const saveData=async (e)=>{
             
         )}
         </div>  
-        ))}
+        )
+        
+       
+        
+        
+        )}
     </div>
     </div>
   )

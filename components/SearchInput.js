@@ -18,7 +18,7 @@ useEffect(()=>setQuery(alamatQ),[alamatQ])
     
    <div className="">
      <input
-        className="w-full z-20 text-sm text-gray-900  border-indigo-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500 bg-transparent"
+        className="w-100 z-20 text-sm text-gray-900   bg-gray-50 h-7 px-2 border-2"
         placeholder="Search Alamat"
         value={query || ""}
         onChange={(e) => setQuery(e.target.value.toLowerCase())}

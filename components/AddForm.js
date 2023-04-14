@@ -66,6 +66,17 @@ const saveForm = async(e)=>{
       rm:data3.rm,
       rt:data3.rt}])
   alert(data2.data.message)
+  setDataQ({
+    _ida:"",
+    rm:"",
+    nama:"",
+    namakk:"",
+    rt:"",
+    rw:"", 
+    alamat:""
+
+})
+
   }
 
 const updateForm = async (e)=>{
@@ -95,6 +106,7 @@ const updateForm = async (e)=>{
   }
     const deleteForm = async(e, id)=>{
       e.preventDefault()
+      alert("Yakin Hapus ? ")
       setShowSpinner(true)
       const res = await fetchDelete(`/api/customer3/${id}`)
       alert(res.data.message)

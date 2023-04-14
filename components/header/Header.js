@@ -35,16 +35,17 @@ function Header({ navigation, category }) {
             </h1>
           </div>
 
-          {/* right */}
-          <div className="hidden sm:flex flex-wrap  w-2/3 mr-10">
+       
+          <div className=" w-2/3 mr-10">
             <HeaderRight category={category} navigation={navigation} />
           </div>
+          
           <div
             className="flex items-center justify-around
           
           "
           >
-            {/* <ShoppingCartIcon className="h-8 mr-10" /> */}
+          
             <div
               onClick={changeMenu}
               className="sm:hidden cursor-pointer mx-4 relative flex items-center"
@@ -53,7 +54,8 @@ function Header({ navigation, category }) {
             </div>
           </div>
         </div>
-        {/* bottom header */}
+
+   
         <div>
           <HeaderMenu menu={state.menuItem} changeMenu={changeMenu} />
         </div>
