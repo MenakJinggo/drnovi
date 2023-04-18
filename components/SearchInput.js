@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import alamat from "../alamat"
+import alamat from "../alamatQ"
 
 function SearchInput({getAlamat, alamatQ}) {
   console.log(alamatQ)
@@ -13,6 +13,18 @@ function SearchInput({getAlamat, alamatQ}) {
         getAlamat(user)
       
      }
+
+let x = []
+for(let i = 0; i< alamat.length; i++){
+      // console.log(alamat[i])
+      const abj = {alamat:alamat[i]}
+      x.push((abj))
+  }
+
+console.log(x)  
+
+
+
 useEffect(()=>setQuery(alamatQ),[alamatQ])
   return (
     

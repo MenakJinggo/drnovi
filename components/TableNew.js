@@ -81,7 +81,7 @@ const saveData=async (e)=>{
 
  const deleteData = async (e, customersId) => {
     e.preventDefault()
-    alert("Yakin Hapus")
+    confirm("Yakin Hapus")
     setShowSpinner(true)
 
     const response = await fetchDelete(`/api/customer3/${customersId}`) 

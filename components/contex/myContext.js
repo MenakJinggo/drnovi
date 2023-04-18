@@ -8,9 +8,12 @@ export function StoreProvider({ children }) {
   const [userEdit, setUserEdit] = useState({});
   const [showForm, setShowForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showLocation, setShowLocation]= useState(false);
+
   const [showSearchOK, setShowSearchOK] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const [dataM, setDataM] = useState({_id:"", rm:"", nama:"",namakk:"", alamat:"",rt:"",rw:""})
+  const [alamat, setAlamat] = useState("")
  
 const addUsers = (newUser) => {
   setUsers(newUser);
@@ -59,7 +62,9 @@ const resetUsers = ()=>{
       showAddForm, 
       setShowAddForm,
       showSearchOK, setShowSearchOK,
-      dataM, setDataM
+      dataM, setDataM,
+      showLocation, setShowLocation,
+      alamat, setAlamat
   
     }}>
   

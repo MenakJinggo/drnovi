@@ -39,6 +39,12 @@ function HeaderRight() {
           <p >Add RM</p>
           < DataSaverOnIcon />
         </div>
+
+        <div onClick={(e)=>addNewCustomer(e)}  
+          className="flex items-center justify-center cursor-pointer space-x-2">
+          <p >Add Alamat</p>
+          < DataSaverOnIcon />
+        </div>
         {/* <div 
           onClick={()=>router.push("/admin")} 
           className="flex  items-center space-x-4 cursor-pointer ">
