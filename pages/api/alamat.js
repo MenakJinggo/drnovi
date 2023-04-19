@@ -25,8 +25,8 @@ await db.connect()
 
  try {
   await db.connect()
-  const abc = await Alamat.find()
-  console.log(abc)
+  const abc = await Alamat.find().sort({ _id : -1 })
+  // console.log(abc)
 
   return res.json({
     message: 'Post added successfully',
@@ -44,18 +44,32 @@ catch (error) {
 
 const postHandler = async (req, res) => {
   await db.connect()
+
   
-  console.log(req.body.alamat)
   const newAlamat = new Alamat({
       _id:new Types.ObjectId(),
       alamat:req.body.alamat
     });
 
-  const alamat = await newAlamat.save();
-  const newAlamat1 = JSON.stringify("Hello World")
+  try{
+    const alamat = await newAlamat.save();
+    const newAlamat1 = JSON.stringify(alamat)
+    res.send({ message: 'Alamat created successfully', newAlamat1:newAlamat1});
+  }catch(error){
+    console.log(error.code)
+    if(error.code =11000){
+      res.send({ message: 'Alamat sudah ditambahkan'});
+    }else{
+      res.send({message:"terjadi kesalahan coba lagi"})
+    }
+    
+  }
+  
+ 
+ 
 
   await db.disconnect();
-  res.send({ message: 'Alamat created successfully', newAlamat1:newAlamat1});
+
 }
 
 

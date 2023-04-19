@@ -9,11 +9,12 @@ export function StoreProvider({ children }) {
   const [showForm, setShowForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showLocation, setShowLocation]= useState(false);
-
+  const [location, setLocation ] = useState([])
   const [showSearchOK, setShowSearchOK] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const [dataM, setDataM] = useState({_id:"", rm:"", nama:"",namakk:"", alamat:"",rt:"",rw:""})
   const [alamat, setAlamat] = useState("")
+  const [Id, setId] = useState("")
  
 const addUsers = (newUser) => {
   setUsers(newUser);
@@ -64,7 +65,9 @@ const resetUsers = ()=>{
       showSearchOK, setShowSearchOK,
       dataM, setDataM,
       showLocation, setShowLocation,
-      alamat, setAlamat
+      alamat, setAlamat,
+      location,setLocation,
+      Id,setId
   
     }}>
   

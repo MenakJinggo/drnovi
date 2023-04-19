@@ -40,19 +40,17 @@ const getHandler = async (req, res) => {
 
 const putHandler = async (req, res) => {
 console.log(req.body)
-const {_id, email, role} = req.body
-
   await db.connect();
-  const user = await User.findByIdAndUpdate(_id, {
-    email : req.body.email,
-    role : req.body.role,
-  },{
-    new:true
-  });
+  // const user = await User.findByIdAndUpdate(_id, {
+  //   email : req.body.email,
+  //   role : req.body.role,
+  // },{
+  //   new:true
+  // });
 
-  const user2 = JSON.stringify(user)
+  // const user2 = JSON.stringify(user)
  
-  res.send({ message: 'Product updated successfully', myData:user2 });
+  res.send({ message: 'Product updated successfully', myData:"yes"});
 }
 const deleteHandler = async (req, res) => {
   console.log(req.query.email)

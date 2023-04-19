@@ -1,7 +1,7 @@
-import React, {useContext, useRef, useState} from 'react'
-import { Store } from "../components/contex/myContext"
+import React, {useContext, useEffect, useState} from 'react'
+import { Store } from "./contex/myContext"
 
-import{fetchAdd, fetchRead}from "./CrudFunction"
+import{fetchAdd, fetchRead, fetchUpdate}from "./CrudFunction"
 import { useRouter } from 'next/router';
 
 import SearchInput from "./SearchInput";
@@ -9,29 +9,33 @@ import SearchInput from "./SearchInput";
 function FormLocation() {
  
 
-  const { setShowLocation, alamat, setAlamat, location, setLocation,setShowSpinner, Id} = useContext(Store);
+  const { setShowLocation, alamat, setAlamat, location, setLocation,setShowSpinner, Id,setId} = useContext(Store);
   const [newAlamat, setNewAlamat] = useState ("")
   // console.log(Id)
-  const ref = useRef(null);
+  
   const router = useRouter()
-
+// console.log(alamat,"ok")
   const saveForm = async(e)=>{
     e.preventDefault()
+    // console.log(alamat ,"ok yes")
     setShowSpinner(true)
-    const data2 = await fetchAdd("/api/alamat", {alamat:alamat})
-    // setAlamat("") 
-   
+    const data2 = await fetchUpdate("/api/alamats/"+Id, {alamat:alamat})
+    
+    // setAlamat("")
     console.log(data2)
-    if(data2.status==200){
-    const alamat = await fetchRead("/api/alamat")
-   
-     setLocation(alamat.abc)
-    }
-    alert(data2.data.message)
+    
+    
     setShowSpinner(false)
+    if(data2.status==200){
+      const alamat = await fetchRead("/api/alamat")
+     alert(data2.data.message)
+     setLocation(alamat.abc)
+     setAlamat("")
+     setId("")
+    }
+    
     // console.log(alamat.abc)
-    setShowLocation(false)
-    ref.current?.scrollIntoView({behavior: 'smooth'});
+    // setShowLocation(false)
   }
 
   const getAlamat =(y)=>{
@@ -41,7 +45,7 @@ function FormLocation() {
 
  const closeOK = (e)=>{
         e.preventDefault()
-        setShowLocation(false)
+        setId("")
       }   
   
   // useEffect(()=>{
@@ -51,7 +55,7 @@ function FormLocation() {
   // console.log(lastRM)
   return (
     <div className='w-full '>
-        <div className='flex items-center justify-center' ref={ref}>
+        <div className='flex items-center justify-center'>
         <form className=" w-96 bg-white rounded-lg border border-gray-200 shadow-md p-2 dark:bg-gray-800 dark:border-gray-70 p-4 mt-4">
             <div className ="mb-2">
                 <label htmlFor="rm" className ="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">RM</label>

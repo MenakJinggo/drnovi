@@ -1,10 +1,11 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useContext,  useEffect,  useRef,  useState } from 'react';
 import alamat from "../alamatQ"
+import { Store } from "./contex/myContext"
+import { fetchRead } from './CrudFunction';
 
 function SearchInput({getAlamat, alamatQ}) {
-  console.log(alamatQ)
+  const { users, setUsers, removeUsers, showForm, setShowForm, Id, setId, showSpinner, setShowSpinner, setUserEdit, location, setLocation, showLocation, setShowLocation, setAlamat } = useContext(Store);
+ 
      const [query, setQuery] = useState("")
      const [desa, setDesa] = useState("")
      const getDesa = (e, user)=>{
@@ -13,19 +14,26 @@ function SearchInput({getAlamat, alamatQ}) {
         getAlamat(user)
       
      }
+console.log(location)
+// let x = []
+// for(let i = 0; i< alamat.length; i++){
+//       // console.log(alamat[i])
+//       const abj = {alamat:alamat[i]}
+//       x.push((abj))
+//   }
 
-let x = []
-for(let i = 0; i< alamat.length; i++){
-      // console.log(alamat[i])
-      const abj = {alamat:alamat[i]}
-      x.push((abj))
-  }
-
-console.log(x)  
+// console.log(x)  
 
 
+useEffect(async()=>{
+  const alamat = await fetchRead("/api/alamat")
+  setLocation(alamat.abc)
+  // console.log(alamat)
+  setQuery(alamatQ),[alamatQ]
 
-useEffect(()=>setQuery(alamatQ),[alamatQ])
+},[])
+// useEffect(()=>setQuery(alamatQ),[alamatQ])
+
   return (
     
    <div className="">
@@ -36,12 +44,12 @@ useEffect(()=>setQuery(alamatQ),[alamatQ])
         onChange={(e) => setQuery(e.target.value.toLowerCase())}
       />
       <ul className="list overflow-auto">
-        {alamat.filter((asd) =>
-          asd.toLowerCase().includes(query)
+        {location.filter((asd) =>
+          asd.alamat.toLowerCase().includes(query)
         ).map((user, index) => (
          <li className="mb-2 flex-none bg-gray-200 " key={index}>
             {query == ""?"":
-            <butto className="cursor-pointer"  onClick ={(e)=>getDesa(e, user)}>{user}</butto>}
+            <butto className="cursor-pointer"  onClick ={(e)=>getDesa(e, user.alamat)}>{user.alamat}</butto>}
           </li>
          
         ))}
